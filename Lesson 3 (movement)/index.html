@@ -14,24 +14,24 @@
                 width: 100%;
             }
         </style>
+        <script src="movement.js"></script>
         <script>
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-
-            ctx.fillStyle = "white";
-            ctx.fillRect(10, 20, 150, 75);
             
-            var Character = function(x, y) {
+            var Character = function(x, y, direction) {
                 this.x = 0;
                 this.y = 0;
+                this.direction = 10;
                 this.update = function(){
-                    ctx.drawImage(document.getElementById("character"), 1, 1, 60, 60, this.x, this.y, 40, 40); //img, (x, y) in img src, (width, height) taken out of img src, (x, y) of img in canvas, (width, height) of img in canvas
+                    ctx.drawImage(document.getElementById("character"), 1, this.direction, 60, 60, this.x, this.y, 40, 40); //img, (x, y) in img src, (width, height) taken out of img src, (x, y) of img in canvas, (width, height) of img in canvas
                 }
             }
             var player = new Character()
 
             setInterval(function(){
+                canvas.width=canvas.width
                 player.update()
             }, 100)
         </script>
