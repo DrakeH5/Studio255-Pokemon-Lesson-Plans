@@ -3,12 +3,13 @@
         <script src="./libraries\Image-Parser-master\Image-Parser-master\canvasStuff.js"></script>
         <script src="./libraries\Image-Parser-master\Image-Parser-master\getData.js"></script>
         <script src="./libraries\Image-Parser-master\Image-Parser-master\imageParser.js"></script>
+        <img id="character" src="./libraries\playerSprites\all.png" width="0" height="0"/>
     </head>
     <body>
         <canvas id="canvas"></canvas>
         <style>
             #canvas {
-                background-color: black;
+                background-color: lightblue;
                 height: 100%;
                 width: 100%;
             }
@@ -20,6 +21,10 @@
 
             ctx.fillStyle = "white";
             ctx.fillRect(10, 20, 150, 75);
+            
+            setInterval(function(){
+                ctx.drawImage(document.getElementById("character"), 1, 1, 60, 60, 0, 0, 40, 40); //img, (x, y) in img src, (width, height) taken out of img src, (x, y) of img in canvas, (width, height) of img in canvas  
+            }, 100)
         </script>
     </body>
 </html>
