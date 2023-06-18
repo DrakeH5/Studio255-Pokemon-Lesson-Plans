@@ -4,5 +4,6 @@ function ImageParser(fileLocation, pixilization = 1) {
     collectionOfData = getData(canvas, imgWidth, imgHeight, pixilization)
     console.log(collectionOfData)
     results = collectionOfData
+    return collectionOfData
   })
 }
