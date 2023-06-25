@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script src="./libraries\Image-Parser-master\Image-Parser-master\canvasStuff.js"></script>
+        <script src="./libraries\Image-Parser-master\Image-Parser-master\getData.js"></script>
+        <script src="./libraries\Image-Parser-master\Image-Parser-master\imageParser.js"></script>
+        <img id="character" src="./libraries\playerSprites\all.png" width="0" height="0"/>
+        <img id="tree" src="./libraries\worldSprites\tree.png" width="0" height="0"/>
+        <img id="path" src="./libraries\worldSprites\path.png" width="0" height="0"/>
+        <img id="grass" src="./libraries\worldSprites\grass.png" width="0" height="0"/>
+        <img id="highGrass" src="./libraries\worldSprites\highGrass.png" width="0" height="0"/>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <style>
+            #canvas {
+                background-color: rgb(109, 198, 154);
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <script src="movement.js"></script>
+        <script src="worldDrawing.js"></script>
+        <script src="./createWorld.js"></script>
+        <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            
+            var Character = function(x, y, direction, animationStep) {
+                this.x = 0;
+                this.y = 0;
+                this.direction = 10;
+                this.animationStep = 15
+                this.momentum = 0
+                this.momentumStore = 0;
+                this.posStore = [this.x, this.y];
+                this.update = function(){
+                    if(this.momentum == this.momentumStore 
+                    && this.posStore[0] != this.x  || this.posStore[1] != this.y){
+                        if(this.animationStep >= 64*3){
+                            this.animationStep = 15
+                        }
+                        player.animationStep += 64
+                    } else {
+                        player.animationStep == 0
+                    }
+                    this.momentumStore = this.momentum
+                    this.posStore = [this.x, this.y]
+                    ctx.drawImage(document.getElementById("character"), this.animationStep, this.direction, 35, 55, this.x, this.y, 30, 30); //img, (x, y) in img src, (width, height) taken out of img src, (x, y) of img in canvas, (width, height) of img in canvas
+                }
+            }
+            var player = new Character()
+
+            var tileSize = 40
+
+            setInterval(function(){
+                canvas.width=canvas.width
+                for(var i=0; i<worldObject.length; i++){
+                    worldObject[i].update()
+                }
+                for(var i=0; i<worldSprite.length; i++){
+                    worldSprite[i].update()
+                }
+                player.update()
+            }, 100)
+
+        </script>
+    </body>
+</html>
